@@ -150,12 +150,12 @@ public class Aluno {
     // String: Aprovado ou Reprovado:
     public String getStatusAluno() {           // <- Utilizando o Método que Calcula a Média
         double media = this.getMediaNota();
-        if (media >= 70) {
-            return ("O Aluno " + this.getNome() + " está Aprovado!!!");
-        } else if (media >= 50 && media < 70) {
-            return "O Aluno " + this.getNome() + " está em Recuperação!!";
+        if (media >= 7) {
+            return "O Aluno " + this.getNome() + " está " + StatusAluno.APROVADO;
+        } else if (media >= 5 && media < 7) {
+            return "O Aluno " + this.getNome() + " está " + StatusAluno.RECUPERACAO;
         } else {
-            return "O Aluno " + this.getNome() + " está Reprovado!";
+            return "O Aluno " + this.getNome() + " está " + StatusAluno.REPROVADO;
         }
     }
 

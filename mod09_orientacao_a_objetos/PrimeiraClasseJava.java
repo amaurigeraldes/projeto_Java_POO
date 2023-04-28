@@ -79,11 +79,45 @@ public class PrimeiraClasseJava {
             alunos.add(aluno1);
         }
 
+        // Outra forma de Percorrer a Lista de Alunos para fazer alguma substituição, se necessário;
+        // Utilizando o Índice para percorrer as Posições
+        for (int pos = 0; pos < alunos.size(); pos++) {
+            System.out.println("=====================================================");
+            Aluno aluno = alunos.get(pos);
+
+            // Substituindo um Aluno na Lista:
+            if (aluno.getNome().equalsIgnoreCase("Alex")) {
+                Aluno trocar = new Aluno();
+                trocar.setNome("Juca");
+
+                Disciplina disciplina = new Disciplina();
+                disciplina.setDisciplina("Matemática");
+                disciplina.setNota(9.6);
+
+                trocar.getDisciplinas().add(disciplina);
+
+                alunos.set(pos, trocar);
+                aluno = alunos.get(pos);
+            }
+
+
+            System.out.println("Aluno: " + aluno.getNome());
+            System.out.println("Média: " + aluno.getMediaNota());
+            System.out.println("Resultado: " + aluno.getStatusAluno());
+            
+            for (int posX = 0; posX < aluno.getDisciplinas().size(); posX++) {
+                Disciplina disc = aluno.getDisciplinas().get(posX);
+                System.out.println("Matéria: " + disc.getDisciplina() + " Nota: " + disc.getNota());
+            }
+            System.out.println("=====================================================");
+        }
+
+
         // Percorrer a Lista de Alunos:
         for (Aluno aluno : alunos) {
-
+        System.out.println("__________________________________________________");
             // Procurando um Aluno na Lista
-            if (aluno.getNome().equalsIgnoreCase("João")) {
+            if (aluno.getNome().equalsIgnoreCase("Zé")) {
                 // Removendo um Aluno da Lista
                 alunos.remove(aluno);
                 break;
@@ -96,17 +130,8 @@ public class PrimeiraClasseJava {
                 // Chamando um Método que retorna o Status do Aluno, utilizando Strings como
                 // resposta:
                 System.out.println("Resultado: " + aluno.getStatusAluno());
-                System.out.println("__________________________________________________");
             }
-        }
-
-        for (Aluno aluno : alunos) {
-            System.out.println(" ");
-            System.out.println("Alunos que sobraram na Lista: " + aluno.getNome());
-            System.out.println("Suas disciplinas e notas são: ");
-            for (Disciplina disciplina : aluno.getDisciplinas()) {
-                System.out.println(disciplina.getDisciplina() + " = " + disciplina.getNota());
-            }
+        System.out.println("__________________________________________________");
         }
     }
 }
