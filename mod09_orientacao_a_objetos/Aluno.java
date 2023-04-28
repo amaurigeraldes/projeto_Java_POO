@@ -1,5 +1,7 @@
 package mod09_orientacao_a_objetos;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /* Esta é a classe/objeto que representa o Aluno: */
 public class Aluno {
@@ -20,9 +22,8 @@ public class Aluno {
     private String nomeEscola;
     private String serie;
 
-    // Instanciando o Objeto Disciplina
-    private Disciplina disciplina = new Disciplina();
-
+    // Instanciando uma Lista de Disciplinas
+    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
     // 1) MÉTODO CONSTRUTOR:
     // 1.1) Método Construtor - Cria os Dados na Memória, sendo Padrão do Java
@@ -122,19 +123,26 @@ public class Aluno {
         this.serie = serie;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
     }
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
+   
     
 
 
     
     // 3) MÉTODO PARA O CÁLCULO DA MÉDIA DO ALUNO:
     public double getMediaNota() {
-        return (disciplina.getNota1() + disciplina.getNota2() + disciplina.getNota3() + disciplina.getNota4()) / 4;
+
+        double somaNotas = 0.0;
+        for (Disciplina disciplina : disciplinas) {
+            somaNotas += disciplina.getNota();
+        }
+        // Qtde de Disciplinas: disciplinas.size() obtidas dinâmicamente
+        return somaNotas / disciplinas.size();
     }
 
 
@@ -166,7 +174,7 @@ public class Aluno {
     public String toString() {
         return "Aluno [nome=" + nome + ", idade=" + idade + ", dataNasc=" + dataNasc + ", rg=" + rg + ", cpf=" + cpf
                 + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", dataMatric=" + dataMatric + ", nomeEscola="
-                + nomeEscola + ", serie=" + serie + ", disciplina=" + disciplina + "]";
+                + nomeEscola + ", serie=" + serie + "]";
     }
 
 
@@ -203,6 +211,10 @@ public class Aluno {
             return false;
         return true;
     }
+    public int setDis(Integer valueOf) {
+        return 0;
+    }
+    
 
 
 
