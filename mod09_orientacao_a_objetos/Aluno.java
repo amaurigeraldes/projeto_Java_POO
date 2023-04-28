@@ -147,23 +147,15 @@ public class Aluno {
 
 
     // 4) MÉTODO PARA MOSTRAR O STATUS DO ALUNO
-    // Boolean: true para Aprovado e false para Reprovado:
-    public boolean getStatusAluno() {           // <- Utilizando o Método que Calcula a Média
-        double media = this.getMediaNota();
-        if (media >= 70) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     // String: Aprovado ou Reprovado:
-    public String getStatusAluno2() {           // <- Utilizando o Método que Calcula a Média
+    public String getStatusAluno() {           // <- Utilizando o Método que Calcula a Média
         double media = this.getMediaNota();
         if (media >= 70) {
-            return "O aluno está Aprovado!!!";
+            return ("O Aluno " + this.getNome() + " está Aprovado!!!");
+        } else if (media >= 50 && media < 70) {
+            return "O Aluno " + this.getNome() + " está em Recuperação!!";
         } else {
-            return "O aluno está Reprovado!";
+            return "O Aluno " + this.getNome() + " está Reprovado!";
         }
     }
 

@@ -1,83 +1,112 @@
 package mod09_orientacao_a_objetos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class PrimeiraClasseJava {
     /* Main é um Método Auto Executável em Java */
     public static void main(String[] args) {
-        // INSTANCIANDO (CRIANDO) OBJETOS PARA O JAVA: new Aluno()
 
-        // Objeto ainda não existe na Memória:
-        // Aluno aluno1;
+        // INSTANCIANDO E CRIANDO UMA LISTA DE ALUNOS:
+        List<Aluno> alunos = new ArrayList<Aluno>();
 
-        // Agora temos Objetos Reais na Memória;
-        
-        // new Aluno() é uma INSTÂNCIA (criação de Objeto);
-        // As variáveis aluno1, aluno2, aluno3, ..., alunoX, são referências para o objeto Aluno;
-        
-        
+        // QUANTIDADE DE ALUNOS A SER CRIADA:
+        String totAlunos = JOptionPane.showInputDialog("Total de alunos?");
+        int qtAlu = Integer.valueOf(totAlunos);
 
-        // CRIANDO AS ENTRADAS OU INPUT DOS DADOS PELO USUÁRIO:
-        String nome = JOptionPane.showInputDialog("Informar o nome do aluno:"); 
-        String idade = JOptionPane.showInputDialog("Idade:"); 
-        String dtNasc = JOptionPane.showInputDialog("Data de nascimento:"); 
-        String num_rg = JOptionPane.showInputDialog("RG:"); 
-        String num_cpf = JOptionPane.showInputDialog("CPF:"); 
-        String mae = JOptionPane.showInputDialog("Nome da mãe:"); 
-        String pai = JOptionPane.showInputDialog("Nome do pai:"); 
-        String dtMatr = JOptionPane.showInputDialog("Data da matrícula:"); 
-        String escola = JOptionPane.showInputDialog("Nome da escola:"); 
-        String serie_esc = JOptionPane.showInputDialog("Série escolar:"); 
+        // Looping para gerar a Lista de Alunos:
+        for (int qtde = 1; qtde <= qtAlu; qtde++) {
 
+            // CRIANDO AS ENTRADAS OU INPUT DOS DADOS PELO USUÁRIO:
+            String nome = JOptionPane.showInputDialog("Informar o nome do aluno " + qtde + ":");
+            // String idade = JOptionPane.showInputDialog("Idade:");
+            // String dtNasc = JOptionPane.showInputDialog("Data de nascimento:");
+            // String num_rg = JOptionPane.showInputDialog("RG:");
+            // String num_cpf = JOptionPane.showInputDialog("CPF:");
+            // String mae = JOptionPane.showInputDialog("Nome da mãe:");
+            // String pai = JOptionPane.showInputDialog("Nome do pai:");
+            // String dtMatr = JOptionPane.showInputDialog("Data da matrícula:");
+            // String escola = JOptionPane.showInputDialog("Nome da escola:");
+            // String serie_esc = JOptionPane.showInputDialog("Série escolar:");
+            String totDisc = JOptionPane.showInputDialog("Total de disciplinas?");
 
+            // Contrutores Padrões (sem parâmetro):
+            Aluno aluno1 = new Aluno();
 
-        // Contrutores Padrões (sem parâmetro): 
-        Aluno aluno1 = new Aluno(); 
+            // Setando os Dados do Aluno:
+            aluno1.setNome(nome);
+            // aluno1.setIdade(Integer.valueOf(idade));
+            // aluno1.setDataNasc(dtNasc);
+            // aluno1.setRg(num_rg);
+            // aluno1.setCpf(num_cpf);
+            // aluno1.setNomeMae(mae);
+            // aluno1.setNomePai(pai);
+            // aluno1.setDataMatric(dtMatr);
+            // aluno1.setNomeEscola(escola);
+            // aluno1.setSerie(serie_esc);
+            int qtDisc = Integer.valueOf(totDisc);
 
-        // Setando os Dados do Aluno:
-        aluno1.setNome(nome);  // String informada através de Input;
-        aluno1.setIdade(Integer.valueOf(idade));  // String informada via Input e convertida para int;
-        aluno1.setDataNasc(dtNasc);  // String informada através de Input;
-        aluno1.setRg(num_rg);   // String informada através de Input;
-        aluno1.setCpf(num_cpf);   // String informada através de Input;
-        aluno1.setNomeMae(mae);   // String informada através de Input;
-        aluno1.setNomePai(pai);   // String informada através de Input;
-        aluno1.setDataMatric(dtMatr);  // String informada através de Input;
-        aluno1.setNomeEscola(escola);   // String informada através de Input;
-        aluno1.setSerie(serie_esc);   // String informada através de Input;
-        
-        
-        // Instânciando e Setando as Disciplinas
-        for (int pos = 1; pos <= 4; pos++) {
-            String nomeDisc = JOptionPane.showInputDialog("Nome da disciplina " + pos + ":");
-            String notaDisc = JOptionPane.showInputDialog("Nota da disciplina " + pos + ":");
-            
-            Disciplina disciplina = new Disciplina();
-            disciplina.setDisciplina(nomeDisc);
-            disciplina.setNota(Double.valueOf(notaDisc));
+            // Instânciando e Setando as Disciplinas
+            for (int pos = 1; pos <= qtDisc; pos++) {
+                String nomeDisc = JOptionPane.showInputDialog("Nome da disciplina " + pos + ":");
+                String notaDisc = JOptionPane.showInputDialog("Nota da disciplina " + pos + ":");
 
-            // Recebendo os Dados das Disciplinas
-            aluno1.getDisciplinas().add(disciplina);
+                Disciplina disciplina = new Disciplina();
+                disciplina.setDisciplina(nomeDisc);
+                disciplina.setNota(Double.valueOf(notaDisc));
+
+                // Recebendo os Dados das Disciplinas
+                aluno1.getDisciplinas().add(disciplina);
+            }
+
+            // Removendo Disciplina da Lista: Yes = 0, No = 1, Cancel = 2
+            int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina? ");
+            if (escolha == 0) {
+                int continuarRemover = 0;
+                int indice = 1;
+                // Removendo Disciplina enquanto houver Disciplina:
+                while (continuarRemover == 0) {
+                    String disciplinaRemover = JOptionPane.showInputDialog("Informe a opção 1, 2, 3 ou 4:");
+                    aluno1.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - indice);
+                    indice++; // Incrementando o indice para manter a Posição do Elemento na Lista
+                    continuarRemover = JOptionPane.showConfirmDialog(null, "Continuar a Remover?");
+                }
+            }
+
+            // Adicionando Aluno:
+            alunos.add(aluno1);
         }
 
+        // Percorrer a Lista de Alunos:
+        for (Aluno aluno : alunos) {
 
-        // Chamando o Método toString(); gerado automaticamente:
-        // System.out.println(aluno1.toString());  // Ou, suprimindo o toString()
-        System.out.println(aluno1);
-        
-        // Chamando um Método que retorna a Média do Aluno:
-        System.out.println("A média do aluno é " + aluno1.getMediaNota());
+            // Procurando um Aluno na Lista
+            if (aluno.getNome().equalsIgnoreCase("João")) {
+                // Removendo um Aluno da Lista
+                alunos.remove(aluno);
+                break;
+            } else {
+                // Chamando o Método toString(); gerado automaticamente:
+                // System.out.println(aluno1.toString()); // Ou, suprimindo o toString()
+                System.out.println(aluno);
+                // Chamando um Método que retorna a Média do Aluno:
+                System.out.println("A média do aluno é " + aluno.getMediaNota());
+                // Chamando um Método que retorna o Status do Aluno, utilizando Strings como
+                // resposta:
+                System.out.println("Resultado: " + aluno.getStatusAluno());
+                System.out.println("__________________________________________________");
+            }
+        }
 
-        // Chamando um Método que retorna o Status do Aluno, utilizando o Operador Ternário:
-        System.out.println("Resultado1: " + (aluno1.getStatusAluno() ? "O Aluno está Aprovado!!!" : "O Aluno está Reprovado!")); // Ou:
-        
-        // Chamando um Método que retorna o Status do Aluno, utilizando Strings como resposta:
-        System.out.println("Resultado2: " + aluno1.getStatusAluno2());
-        
-        
-
-        
-
-        
+        for (Aluno aluno : alunos) {
+            System.out.println(" ");
+            System.out.println("Alunos que sobraram na Lista: " + aluno.getNome());
+            System.out.println("Suas disciplinas e notas são: ");
+            for (Disciplina disciplina : aluno.getDisciplinas()) {
+                System.out.println(disciplina.getDisciplina() + " = " + disciplina.getNota());
+            }
+        }
     }
 }
