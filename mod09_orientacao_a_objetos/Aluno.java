@@ -151,11 +151,11 @@ public class Aluno {
     public String getStatusAluno() {           // <- Utilizando o Método que Calcula a Média
         double media = this.getMediaNota();
         if (media >= 7) {
-            return "O Aluno " + this.getNome() + " está " + StatusAluno.APROVADO;
+            return StatusAluno.APROVADO;
         } else if (media >= 5 && media < 7) {
-            return "O Aluno " + this.getNome() + " está " + StatusAluno.RECUPERACAO;
+            return StatusAluno.RECUPERACAO;
         } else {
-            return "O Aluno " + this.getNome() + " está " + StatusAluno.REPROVADO;
+            return StatusAluno.REPROVADO;
         }
     }
 

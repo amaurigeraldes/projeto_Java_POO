@@ -1,6 +1,7 @@
 package mod09_orientacao_a_objetos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -11,6 +12,12 @@ public class PrimeiraClasseJava {
 
         // INSTANCIANDO E CRIANDO UMA LISTA DE ALUNOS:
         List<Aluno> alunos = new ArrayList<Aluno>();
+
+        // SEPARANDO LISTAS COM HASHMAP
+        // É uma Lista que dentro dela temos uma chave que identifica uma sequência de valores
+        // Elimina a necessidade de criação das listas de alunosAprov, alunosRecup e alunosRepro;
+        HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
+
 
         // QUANTIDADE DE ALUNOS A SER CRIADA:
         String totAlunos = JOptionPane.showInputDialog("Total de alunos?");
@@ -79,59 +86,43 @@ public class PrimeiraClasseJava {
             alunos.add(aluno1);
         }
 
-        // Outra forma de Percorrer a Lista de Alunos para fazer alguma substituição, se necessário;
-        // Utilizando o Índice para percorrer as Posições
-        for (int pos = 0; pos < alunos.size(); pos++) {
-            System.out.println("=====================================================");
-            Aluno aluno = alunos.get(pos);
+        // INICIALIZANDO OS VALORES DO HASHMAP:
+        maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+        maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+        maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
 
-            // Substituindo um Aluno na Lista:
-            if (aluno.getNome().equalsIgnoreCase("Alex")) {
-                Aluno trocar = new Aluno();
-                trocar.setNome("Juca");
-
-                Disciplina disciplina = new Disciplina();
-                disciplina.setDisciplina("Matemática");
-                disciplina.setNota(9.6);
-
-                trocar.getDisciplinas().add(disciplina);
-
-                alunos.set(pos, trocar);
-                aluno = alunos.get(pos);
-            }
-
-
-            System.out.println("Aluno: " + aluno.getNome());
-            System.out.println("Média: " + aluno.getMediaNota());
-            System.out.println("Resultado: " + aluno.getStatusAluno());
-            
-            for (int posX = 0; posX < aluno.getDisciplinas().size(); posX++) {
-                Disciplina disc = aluno.getDisciplinas().get(posX);
-                System.out.println("Matéria: " + disc.getDisciplina() + " Nota: " + disc.getNota());
-            }
-            System.out.println("=====================================================");
-        }
-
-
-        // Percorrer a Lista de Alunos:
+        // SEPARANDO AS LISTAS DE ALUNOS APROVADOS, REPROVADOS E EM RECUPERAÇÃO
         for (Aluno aluno : alunos) {
-        System.out.println("__________________________________________________");
-            // Procurando um Aluno na Lista
-            if (aluno.getNome().equalsIgnoreCase("Zé")) {
-                // Removendo um Aluno da Lista
-                alunos.remove(aluno);
-                break;
-            } else {
-                // Chamando o Método toString(); gerado automaticamente:
-                // System.out.println(aluno1.toString()); // Ou, suprimindo o toString()
-                System.out.println(aluno);
-                // Chamando um Método que retorna a Média do Aluno:
-                System.out.println("A média do aluno é " + aluno.getMediaNota());
-                // Chamando um Método que retorna o Status do Aluno, utilizando Strings como
-                // resposta:
-                System.out.println("Resultado: " + aluno.getStatusAluno());
+            
+            if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.APROVADO)) {
+                maps.get(StatusAluno.APROVADO).add(aluno);
+            } else if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+                maps.get(StatusAluno.RECUPERACAO).add(aluno);
+            } else if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.REPROVADO)) { 
+                maps.get(StatusAluno.REPROVADO).add(aluno);
             }
-        System.out.println("__________________________________________________");
         }
+
+
+        // CRIANDO LISTAS DE ALUNOS APROVADOS, REPROVADOS E EM RECUPERAÇÃO
+        System.out.println("-------------------- Lista Aprovados -----------------------");
+        for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
+            System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: " + aluno.getStatusAluno());
+        }
+        System.out.println("------------------------------------------------------------");
+
+        System.out.println("-------------------- Lista Recuperação ---------------------");
+        for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
+            System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: " + aluno.getStatusAluno());
+        }
+        System.out.println("------------------------------------------------------------");
+
+        System.out.println("-------------------- Lista Reprovados ----------------------");
+        for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
+            System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: " + aluno.getStatusAluno());
+        }
+        System.out.println("------------------------------------------------------------");
+
+
     }
 }
