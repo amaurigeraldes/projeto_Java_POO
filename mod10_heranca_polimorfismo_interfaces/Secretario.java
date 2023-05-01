@@ -40,6 +40,12 @@ public class Secretario extends Pessoa {
         this.experiencia = experiencia;
     }
 
+    // Método abstrato criado na Classe Pessoa
+    @Override // Identifica um Método Sobreescrito
+    public double salario() {
+        return 1800.80 * 0.9;
+    }
+
     
 
 }

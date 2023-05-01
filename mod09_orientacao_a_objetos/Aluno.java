@@ -179,6 +179,12 @@ public class Aluno extends Pessoa { // <- Usando a Herança: extends Pessoa
         return this.pessoaMaiorIdade() ? "O aluno é maior de idade" : "O aluno é menor de idade";
     }
 
+    // Método abstrato criado na Classe Pessoa
+    @Override
+    public double salario() {
+        return 1500.93;
+    }
+
 
 
     

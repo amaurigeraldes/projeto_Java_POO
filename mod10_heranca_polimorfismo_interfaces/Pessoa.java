@@ -3,7 +3,7 @@ package mod10_heranca_polimorfismo_interfaces;
 
 // Herança: Classe Pai, ou classe Master, ou Superclasse;
 // Possui Atributos comuns a todos os Objetos Filhos;
-public class Pessoa {
+public abstract class Pessoa {
     // Para funcionar na Superclasse, alterar a Visibilidade dos Atributos de private para protected
     protected String nome;
     protected int idade;
@@ -12,6 +12,9 @@ public class Pessoa {
     protected String cpf;
     protected String nomeMae;
     protected String nomePai;
+
+    // O Método Abstrato que fica numa Classe Pai é "obrigatório" para as Classes Filhas(Subclasses):
+    public abstract double salario();
 
     // Retorna true caso >= 18, senão false:
     public boolean pessoaMaiorIdade() {

@@ -46,7 +46,29 @@ public class TestandoClassesFilhas {
         System.out.println(secretario.pessoaMaiorIdade());
         
         
+        // Não é permitido instanciar a Classe Pessoa pois foi definida como PADRÃO: public abstract class Pessoa {}
+        // A própria IDE já mostra o erro, impedindo que algo seja feito errado dentro do código, mantendo a regra;
+        // Pessoa pessoa = new Pessoa();  
+    
+        // O exemplo abaixo não é Instanciar um objeto, mas sim a criação de uma Classe dentro da Classe
+        // Observação: NÃO FAZER ISSO!
+        // Pessoa pessoa = new Pessoa() {
+        //     private String xxx;
+        // };
+
+        // É possível instanciar um novo aluno, mas não uma Classe Abstrata;
+        // Aluno aluno2 = new Aluno();
         
+
+        // Métodos Abstratos:
+        System.out.println("O Salário do aluno é R$" + aluno.salario());
+        System.out.println("O Salário do diretor é R$" + diretor.salario());
+        System.out.println("O Salário do secretário é R$" + secretario.salario());
+        
+
+        
+        
+
 
 
 

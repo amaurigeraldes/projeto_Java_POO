@@ -39,6 +39,12 @@ public class Diretor extends Pessoa {
         this.titulacao = titulacao;
     }
 
+    // Método abstrato criado na Classe Pessoa
+    @Override
+    public double salario() {
+        return 3900.78;
+    }
+
     
 
 
