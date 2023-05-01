@@ -51,7 +51,7 @@ public class Aluno extends Pessoa { // <- Usando a Herança: extends Pessoa
 
     // 2) MÉTODOS SETTERS E GETTERS:
     // SETTER: adiciona dados aos Atributos;
-    // GETTER: obtém os dados dos Atribuitos;
+    // GETTER: obtém os dados dos Atributos;
 
     public String getDataMatric() {
         return dataMatric;
@@ -135,7 +135,7 @@ public class Aluno extends Pessoa { // <- Usando a Herança: extends Pessoa
         return result;
     }
 
-    @Override
+    @Override // Identifica Método Sobreescrito
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -167,9 +167,17 @@ public class Aluno extends Pessoa { // <- Usando a Herança: extends Pessoa
         return true;
     }
 
-    
 
+    // ANOTAÇÃO @override e reescrita de métodos
+    @Override // Identifica Método Sobreescrito
+    public boolean pessoaMaiorIdade() {
+        // Podemos Mudar a Regra ou Criar outros métodos;
+        return idade >= 21; 
+    }
 
+    public String msgMaiorIdade() {
+        return this.pessoaMaiorIdade() ? "O aluno é maior de idade" : "O aluno é menor de idade";
+    }
 
 
 

@@ -13,6 +13,10 @@ public class Pessoa {
     protected String nomeMae;
     protected String nomePai;
 
+    // Retorna true caso >= 18, senão false:
+    public boolean pessoaMaiorIdade() {
+        return idade >= 18;
+    }
 
 
     public String getNome() {

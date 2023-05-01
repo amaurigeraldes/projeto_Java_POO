@@ -12,6 +12,7 @@ public class TestandoClassesFilhas {
         aluno.setNomeEscola("JDEV Treinamento");
         aluno.setDataMatric("10/04/2023");
         aluno.setSerie("1º Ano");
+        aluno.setIdade(21);
         
         
 
@@ -22,7 +23,7 @@ public class TestandoClassesFilhas {
         diretor.setRegistroEducacao("99999-9");
         diretor.setTempoDirecao(5);
         diretor.setTitulacao("Mestrado");
-
+        diretor.setIdade(50);
 
 
         // Intanciando a Classe Secretário:
@@ -32,12 +33,21 @@ public class TestandoClassesFilhas {
         secretario.setRegistro("888888-8");
         secretario.setNivelCargo("Médio");
         secretario.setExperiencia("Administração");
+        secretario.setIdade(18);
         
 
 
         System.out.println(aluno);
         System.out.println(diretor);
         System.out.println(secretario);
+
+        System.out.println(aluno.pessoaMaiorIdade() + " - " + aluno.msgMaiorIdade());
+        System.out.println(diretor.pessoaMaiorIdade());
+        System.out.println(secretario.pessoaMaiorIdade());
+        
+        
+        
+
 
 
 
