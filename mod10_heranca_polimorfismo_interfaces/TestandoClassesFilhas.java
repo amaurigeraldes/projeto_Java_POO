@@ -28,7 +28,7 @@ public class TestandoClassesFilhas {
 
         // Intanciando a Classe Secretário:
         Secretario secretario = new Secretario();
-        secretario.setNome("Geraldes");
+        secretario.setNome("Moreira");
         secretario.setCpf("027.456.288-01");
         secretario.setRegistro("888888-8");
         secretario.setNivelCargo("Médio");
@@ -65,14 +65,19 @@ public class TestandoClassesFilhas {
         System.out.println("O Salário do diretor é R$" + diretor.salario());
         System.out.println("O Salário do secretário é R$" + secretario.salario());
         
+        // Exemplo de Polimorfismo:
+        // Pessoa pessoa = new Aluno();
+        // pessoa = secretario;
 
-        
-        
-
-
-
-
-
+        teste(aluno);
+        teste(diretor);
+        teste(secretario);
 
     }
+    public static void teste(Pessoa pessoa) {
+        System.out.println("Essa pessoa é demais "+pessoa.getNome()+" e o salário dela é de R$"+pessoa.salario());
+    }
+
+
+
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import mod10_heranca_polimorfismo_interfaces.Secretario;
+
 public class PrimeiraClasseJava {
     /* Main é um Método Auto Executável em Java */
     public static void main(String[] args) {
@@ -14,17 +16,25 @@ public class PrimeiraClasseJava {
         String login = JOptionPane.showInputDialog("Login: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
 
+        // Instanciando a Classe secretario e fazendo a Autenticação, trabalhando diretamente com o Objeto;
+        Secretario secretario = new Secretario();
+        secretario.setLogin(login);
+        secretario.setSenha(senha);
+
         // Condição para que o programa seja executado
-        if (login.equalsIgnoreCase("a") && senha.equalsIgnoreCase("1")) {
+        // if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+        // Se true Acessa, se false Não Acessa;
+        if (secretario.autenticar()) {
 
             // INSTANCIANDO E CRIANDO UMA LISTA DE ALUNOS:
             List<Aluno> alunos = new ArrayList<Aluno>();
 
             // SEPARANDO LISTAS COM HASHMAP
-            // É uma Lista que dentro dela temos uma chave que identifica uma sequência de valores
-            // Elimina a necessidade de criação das listas de alunosAprov, alunosRecup e alunosRepro;
+            // É uma Lista que dentro dela temos uma chave que identifica uma sequência de
+            // valores
+            // Elimina a necessidade de criação das listas de alunosAprov, alunosRecup e
+            // alunosRepro;
             HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
-
 
             // QUANTIDADE DE ALUNOS A SER CRIADA:
             String totAlunos = JOptionPane.showInputDialog("Total de alunos?");
@@ -100,37 +110,41 @@ public class PrimeiraClasseJava {
 
             // SEPARANDO AS LISTAS DE ALUNOS APROVADOS, REPROVADOS E EM RECUPERAÇÃO
             for (Aluno aluno : alunos) {
-                
+
                 if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.APROVADO)) {
                     maps.get(StatusAluno.APROVADO).add(aluno);
                 } else if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
                     maps.get(StatusAluno.RECUPERACAO).add(aluno);
-                } else if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.REPROVADO)) { 
+                } else if (aluno.getStatusAluno().equalsIgnoreCase(StatusAluno.REPROVADO)) {
                     maps.get(StatusAluno.REPROVADO).add(aluno);
                 }
             }
 
-
             // CRIANDO LISTAS DE ALUNOS APROVADOS, REPROVADOS E EM RECUPERAÇÃO
             System.out.println("-------------------- Lista Aprovados -----------------------");
             for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
-                System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: " + aluno.getStatusAluno());
+                System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: "
+                        + aluno.getStatusAluno());
             }
             System.out.println("------------------------------------------------------------");
 
             System.out.println("-------------------- Lista Recuperação ---------------------");
             for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
-                System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: " + aluno.getStatusAluno());
+                System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: "
+                        + aluno.getStatusAluno());
             }
             System.out.println("------------------------------------------------------------");
 
             System.out.println("-------------------- Lista Reprovados ----------------------");
             for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
-                System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: " + aluno.getStatusAluno());
+                System.out.println("Aluno: " + aluno.getNome() + "  Média: " + aluno.getMediaNota() + "  Resultado: "
+                        + aluno.getStatusAluno());
             }
             System.out.println("------------------------------------------------------------");
 
-        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Acesso não permitido!");
 
+        }
     }
 }
