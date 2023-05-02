@@ -10,12 +10,11 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     private String nivelCargo;
     private String experiencia;
 
-    // Para autenticar, é necessário um Login e uma Senha:
-    private String Login;
-    private String Senha;
-
-
-
+    // Para autenticar, é necessário um Login e uma Senha;
+    // Porém este é o jeito mais fácil mas causa a "quebra do código ou da estrutura";
+    // Excluir pois não iremos fazer a autenticação diretamente com o Objeto, mas com a Interface;
+    // private String Login; // Excluir
+    // private String Senha; // Excluir
 
     // toString: É necessária a incluisão dos Objetos/Elementos da Classe Pessoa:
     @Override
@@ -49,34 +48,31 @@ public class Secretario extends Pessoa implements PermitirAcesso {
         this.experiencia = experiencia;
     }
     
-    public String getLogin() {
-        return Login;
-    }
-
-    public void setLogin(String login) {
-        Login = login;
-    }
-
-    public String getSenha() {
-        return Senha;
-    }
-
-    public void setSenha(String senha) {
-        Senha = senha;
-    }
-
+    
     // Método abstrato criado na Classe Pessoa
     @Override // Identifica um Método Sobreescrito
     public double salario() {
         return 1800.80 * 0.9;
     }
 
-    // Método do contrato de autenticação, obrigatório ao Implementar a Interface:
+    // Método do contrato de autenticação, obrigatório ao Implementar a Interface diretamente com o Objeto;
+    // Excluir:
+    // @Override
+    // public boolean autenticar() {
+    //     // Retorna true caso login="admin" e senha = "admin", senão retorna false;
+    //     return login.equals("admin") && senha.equals("admin");
+    // }
+
+
+    // Método do contrato de autenticação, obrigatório ao Implementar a Interface diretamente com a Interface;
+    // Incluir:
     @Override
-    public boolean autenticar() {
-        // Retorna true caso login="admin" e senha = "admin", senão retorna false;
-        return Login.equals("admin") && Senha.equals("admin");
+    public boolean autenticar(String login, String senha) {
+        return login.equals("admin") && senha.equals("admin");
     }
+
+    
+
 
     
 

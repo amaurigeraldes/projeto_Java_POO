@@ -17,14 +17,19 @@ public class PrimeiraClasseJava {
         String senha = JOptionPane.showInputDialog("Senha: ");
 
         // Instanciando a Classe secretario e fazendo a Autenticação, trabalhando diretamente com o Objeto;
-        Secretario secretario = new Secretario();
-        secretario.setLogin(login);
-        secretario.setSenha(senha);
+        // Secretario secretario = new Secretario(); 
+        // secretario.setLogin(login);  // Na outra forma não é possível e não é necessário fazer referência;
+        // secretario.setSenha(senha);  // Na outra forma não é possível e não é necessário fazer referência;
+
+        // Ou, de outra forma, trabalhando diretamente com a Interface;
+        // PermitirAcesso secretario = new Secretario();                         // Eliminar
+
 
         // Condição para que o programa seja executado
         // if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
         // Se true Acessa, se false Não Acessa;
-        if (secretario.autenticar()) {
+        // if (secretario.autenticar(login, senha)) {  // Alterar:
+        if (new Secretario().autenticar(login, senha)) {                        // Alterar
 
             // INSTANCIANDO E CRIANDO UMA LISTA DE ALUNOS:
             List<Aluno> alunos = new ArrayList<Aluno>();
