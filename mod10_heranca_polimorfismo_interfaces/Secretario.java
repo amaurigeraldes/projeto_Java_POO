@@ -16,7 +16,21 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     // private String Login; // Excluir
     // private String Senha; // Excluir
 
-    // toString: É necessária a incluisão dos Objetos/Elementos da Classe Pessoa:
+    // Outra forma é usando Interfaces e Construtores:
+    private String login; // Incluir novamente
+    private String senha; // Incluir novamente
+    // Incluir o Construtor Padrão do Java:
+    public Secretario(String login, String senha) {  // Sempre irá receber o Login e a Senha como parâmetro;
+        // Indicar os parâmetros da classe:
+    this.login = login;
+    this.senha = senha;
+    }
+    public Secretario() {  // Além do Construtor com parâmetros, também podemos manter o Construtor Padrão;
+
+    }
+
+
+    // toString: É necessária a inclusão dos Objetos/Elementos da Classe Pessoa:
     @Override
     public String toString() {
         return "Secretario [nome=" + nome + ", idade=" + idade + ", dataNasc=" + dataNasc + ", rg=" + rg + ", cpf="
@@ -68,6 +82,17 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     // Incluir:
     @Override
     public boolean autenticar(String login, String senha) {
+        // Outra forma é usando Interfaces e Construtores:
+        // return login.equals("admin") && senha.equals("admin");  // Excluir
+        this.login = login;
+        this.senha = senha;
+        return autenticar();  // Pode chamar o Método autenticar abaixo;
+    }
+
+
+    // Outra forma é usando Interfaces e Construtores:
+    @Override
+    public boolean autenticar() {
         return login.equals("admin") && senha.equals("admin");
     }
 

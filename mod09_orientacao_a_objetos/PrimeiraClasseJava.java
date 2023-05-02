@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import mod10_heranca_polimorfismo_interfaces.Secretario;
+import mod10_heranca_polimorfismo_interfaces.Interfaces.PermitirAcesso;
 
 public class PrimeiraClasseJava {
     /* Main é um Método Auto Executável em Java */
@@ -15,6 +16,11 @@ public class PrimeiraClasseJava {
         // SIMPLES VALIDAÇÃO DE PERMISSÃO DE ACESSO
         String login = JOptionPane.showInputDialog("Login: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
+
+        // Outra forma é usando Interfaces e Construtores:
+        PermitirAcesso permitirAcesso = new Secretario(login, senha);
+
+
 
         // Instanciando a Classe secretario e fazendo a Autenticação, trabalhando diretamente com o Objeto;
         // Secretario secretario = new Secretario(); 
@@ -29,7 +35,7 @@ public class PrimeiraClasseJava {
         // if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
         // Se true Acessa, se false Não Acessa;
         // if (secretario.autenticar(login, senha)) {  // Alterar:
-        if (new Secretario().autenticar(login, senha)) {                        // Alterar
+        if (permitirAcesso.autenticar()) {                        // Alterar
 
             // INSTANCIANDO E CRIANDO UMA LISTA DE ALUNOS:
             List<Aluno> alunos = new ArrayList<Aluno>();

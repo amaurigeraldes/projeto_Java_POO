@@ -7,4 +7,6 @@ public interface PermitirAcesso {
     // public boolean autenticar();  
     // Incluir para fazer a autenticação diretamente com a Interface;
     public boolean autenticar(String login, String senha);
+    // Outra forma é usando Interfaces e Construtores:
+    public boolean autenticar();  
 }
