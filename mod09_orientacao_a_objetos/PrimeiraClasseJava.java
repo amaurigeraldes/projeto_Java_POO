@@ -6,8 +6,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import mod10_heranca_polimorfismo_interfaces.FuncaoAutenticacao;
 import mod10_heranca_polimorfismo_interfaces.Secretario;
-import mod10_heranca_polimorfismo_interfaces.Interfaces.PermitirAcesso;
+
 
 public class PrimeiraClasseJava {
     /* Main é um Método Auto Executável em Java */
@@ -17,10 +18,11 @@ public class PrimeiraClasseJava {
         String login = JOptionPane.showInputDialog("Login: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
 
+
+        // FuncaoAutenticacao autenticacao = new FuncaoAutenticacao();  // Excluir
+
         // Outra forma é usando Interfaces e Construtores:
-        PermitirAcesso permitirAcesso = new Secretario(login, senha);
-
-
+        // PermitirAcesso permitirAcesso = new Secretario(login, senha);  // 
 
         // Instanciando a Classe secretario e fazendo a Autenticação, trabalhando diretamente com o Objeto;
         // Secretario secretario = new Secretario(); 
@@ -35,7 +37,12 @@ public class PrimeiraClasseJava {
         // if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
         // Se true Acessa, se false Não Acessa;
         // if (secretario.autenticar(login, senha)) {  // Alterar:
-        if (permitirAcesso.autenticar()) {                        // Alterar
+        // if (permitirAcesso.autenticar()) {                        // Alterar
+        // Trava a autenticação do código para ter mais segurança;
+        // if (autenticacao.autenticarCursoJava(permitirAcesso)) {  // Alterar
+        // if (new FuncaoAutenticacao(permitirAcesso).autenticar()) {    // Alterar
+        // Tornando mais genérico:
+        if (new FuncaoAutenticacao(new Secretario(login, senha)).autenticar()) {  
 
             // INSTANCIANDO E CRIANDO UMA LISTA DE ALUNOS:
             List<Aluno> alunos = new ArrayList<Aluno>();

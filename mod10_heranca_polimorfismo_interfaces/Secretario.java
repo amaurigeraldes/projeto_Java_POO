@@ -19,12 +19,14 @@ public class Secretario extends Pessoa implements PermitirAcesso {
     // Outra forma é usando Interfaces e Construtores:
     private String login; // Incluir novamente
     private String senha; // Incluir novamente
+    
     // Incluir o Construtor Padrão do Java:
     public Secretario(String login, String senha) {  // Sempre irá receber o Login e a Senha como parâmetro;
         // Indicar os parâmetros da classe:
-    this.login = login;
-    this.senha = senha;
+        this.login = login;
+        this.senha = senha;
     }
+    
     public Secretario() {  // Além do Construtor com parâmetros, também podemos manter o Construtor Padrão;
 
     }
