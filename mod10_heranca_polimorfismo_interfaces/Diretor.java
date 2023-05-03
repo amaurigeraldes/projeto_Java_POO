@@ -41,7 +41,7 @@ public class Diretor extends Pessoa implements PermitirAcesso {
     // Outra forma é usando Interfaces e Construtores:
     @Override
     public boolean autenticar() {
-        return login.equals("adm") && senha.equals("adm");
+        return login.equals("admin") && senha.equals("admin");
     }
 
     // toString: É necessária a inclusão dos Objetos/Elementos da Classe Pessoa:
