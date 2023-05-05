@@ -19,6 +19,8 @@ public class FuncaoAutenticacao {
 
     public FuncaoAutenticacao(PermitirAcesso acesso) {
         this.permitirAcesso = acesso;
+        // Causando um Erro para Testar o Tratamento de Exceções:
+        // this.permitirAcesso = null;
     }
 
 

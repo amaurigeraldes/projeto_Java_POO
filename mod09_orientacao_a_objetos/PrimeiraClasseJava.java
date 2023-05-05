@@ -145,6 +145,8 @@ public class PrimeiraClasseJava {
                 }
 
                 // INICIALIZANDO OS VALORES DO HASHMAP:
+                // Simulando um Erro p/ Tratamento de Erros/Exceções
+                // maps.put(StatusAluno.APROVADO, null);
                 maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
                 maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
                 maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
@@ -224,7 +226,8 @@ public class PrimeiraClasseJava {
             // Mensagem de Exceção para Campos onde deverá receber um Número como input:
             JOptionPane.showMessageDialog(null, "Erro de Conversão de Número! " + saida.toString());
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Erro! Null Pointer Exception! " + e.getClass());
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro! Null Pointer Exception! " + e.getClass().getName());
         } catch (ExcecaoProcessarNota e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro da Exceção Customizada! " + e.getClass().getName());
@@ -240,6 +243,7 @@ public class PrimeiraClasseJava {
     }
     
     // CRIANDO E UTILIZANDO UMA CLASSE DE EXCEÇÃO CUSTOMIZADA - FORMA 02
+    // LANÇANDO A EXCEÇÃO PARA CIMA, OU SEJA, PARA O TRY CATCH DO MAIN
     public static void lerArquivo() throws ExcecaoProcessarNota {
 
         try {
