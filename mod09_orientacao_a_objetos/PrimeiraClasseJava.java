@@ -1,8 +1,10 @@
 package mod09_orientacao_a_objetos;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -15,6 +17,10 @@ public class PrimeiraClasseJava {
 
         // TRATAMENTO DE ERROS E EXCEÇÕES
         try {
+
+            // Tentando ler um arquivo que não existe:
+            File arquivo = new File("c://linhas.txt");
+            Scanner scanner = new Scanner(arquivo);
 
             // SIMPLES VALIDAÇÃO DE PERMISSÃO DE ACESSO
             String login = JOptionPane.showInputDialog("Login: ");
@@ -67,7 +73,7 @@ public class PrimeiraClasseJava {
 
                     // CRIANDO AS ENTRADAS OU INPUT DOS DADOS PELO USUÁRIO:
                     String nome = JOptionPane.showInputDialog("Informar o nome do aluno " + qtde + ":");
-                    // String idade = JOptionPane.showInputDialog("Idade:");
+                    String idade = JOptionPane.showInputDialog("Idade:");
                     // String dtNasc = JOptionPane.showInputDialog("Data de nascimento:");
                     // String num_rg = JOptionPane.showInputDialog("RG:");
                     // String num_cpf = JOptionPane.showInputDialog("CPF:");
@@ -83,7 +89,7 @@ public class PrimeiraClasseJava {
 
                     // Setando os Dados do Aluno:
                     aluno1.setNome(nome);
-                    // aluno1.setIdade(Integer.valueOf(idade));
+                    aluno1.setIdade(Integer.valueOf(idade));
                     // aluno1.setDataNasc(dtNasc);
                     // aluno1.setRg(num_rg);
                     // aluno1.setCpf(num_cpf);
@@ -171,7 +177,7 @@ public class PrimeiraClasseJava {
                 JOptionPane.showMessageDialog(null, "Acesso não permitido!");
             }
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             // ALTERNATIVAS DE MENSAGENS PARA AUXILIAR O PROGRAMADOR NA IDENTIFICAÇÃO DO ERRO
             // Imprimir no Console Java para o Programador saber onde está o Erro
             e.printStackTrace();
@@ -201,7 +207,20 @@ public class PrimeiraClasseJava {
             JOptionPane.showMessageDialog(null, "Erro ao processar notas!");
             // Ou, com mais informações:
             JOptionPane.showMessageDialog(null, "Erro ao processar notas! " + saida.toString());
+
+            // Mensagem de Exceção para Campos onde deverá receber um Número como input:
+            JOptionPane.showMessageDialog(null, "Erro de Conversão de Número! " + saida.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Erro! Null Pointer Exception! " + e.getClass());
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro Inesperado! " + e.getClass().getName());
         }
+
+
+
+
+
 
     }
 }
