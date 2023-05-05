@@ -1,6 +1,7 @@
 package mod09_orientacao_a_objetos;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,18 +11,30 @@ import javax.swing.JOptionPane;
 
 import mod10_heranca_polimorfismo_interfaces.FuncaoAutenticacao;
 import mod10_heranca_polimorfismo_interfaces.Secretario;
+import mod11_tratamento_erros_excecoes.ExcecaoProcessarNota;
 
 public class PrimeiraClasseJava {
     /* Main é um Método Auto Executável em Java */
     public static void main(String[] args) {
 
-        // TRATAMENTO DE ERROS E EXCEÇÕES
+                // TRATAMENTO DE ERROS E EXCEÇÕES
         try {
 
-            // Tentando ler um arquivo que não existe:
-            File arquivo = new File("c://linhas.txt");
-            Scanner scanner = new Scanner(arquivo);
+            lerArquivo();
 
+            // CRIANDO E UTILIZANDO UMA CLASSE DE EXCEÇÃO CUSTOMIZADA - FORMA 01
+            // try {
+            //     // Tentando ler um arquivo que não existe:
+            //     File arquivo = new File("c://linhas.txt");
+            //     Scanner scanner = new Scanner(arquivo);
+            // } catch (FileNotFoundException e) {
+            //     e.printStackTrace();
+            //     // throw new ExcecaoProcessarNota("Erro no arquivo TXT ao processar as Notas do Aluno!");
+            //     // Ou:
+            //     throw new ExcecaoProcessarNota(e.getMessage());
+            // }
+            
+            
             // SIMPLES VALIDAÇÃO DE PERMISSÃO DE ACESSO
             String login = JOptionPane.showInputDialog("Login: ");
             String senha = JOptionPane.showInputDialog("Senha: ");
@@ -212,15 +225,34 @@ public class PrimeiraClasseJava {
             JOptionPane.showMessageDialog(null, "Erro de Conversão de Número! " + saida.toString());
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Erro! Null Pointer Exception! " + e.getClass());
+        } catch (ExcecaoProcessarNota e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro da Exceção Customizada! " + e.getClass().getName());
         } catch (Exception e) {
             e.printStackTrace();
+            // Para mostrar a causa do erro se não tiver sido nenhuma das anteriores
             JOptionPane.showMessageDialog(null, "Erro Inesperado! " + e.getClass().getName());
+        // Não é obrigatório utilizar. Sempre é executado ocorrendo erros ou não.
+        } finally {
+            JOptionPane.showMessageDialog(null, "Fim Normal de Processamento!");
+        }
+
+    }
+    
+    // CRIANDO E UTILIZANDO UMA CLASSE DE EXCEÇÃO CUSTOMIZADA - FORMA 02
+    public static void lerArquivo() throws ExcecaoProcessarNota {
+
+        try {
+            File arquivo = new File("c://linhas.txt");
+            Scanner scanner = new Scanner(arquivo);
+        } catch (FileNotFoundException e) {
+            throw new ExcecaoProcessarNota(e.getMessage());
         }
 
 
 
-
-
-
     }
+
+
+
 }
